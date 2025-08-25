@@ -1,0 +1,113 @@
+/**
+ * CSS for the admin interface.
+ *
+ * FILE: assets/css/ocs-admin-styles.css
+ */
+.ocs-wrap .ocs-title-icon { vertical-align: middle; margin-top: -3px;}
+.ocs-form { display: flex; gap: 20px; align-items: flex-start; }
+.ocs-main-content { display: flex; flex: 3; gap: 20px; }
+.ocs-recipe-column { flex: 1; min-width: 0; }
+.ocs-sidebar { flex: 1; max-width: 280px; }
+
+.ocs-recipe-section {
+    background: #fff; border: 1px solid #ccd0d4;
+    padding: 1rem 1.5rem; margin-bottom: 20px; border-radius: 8px;
+    box-shadow: 0 2px 5px rgba(0,0,0,0.05);
+}
+.ocs-recipe-section h3 {
+    margin-top: 0; margin-bottom: 1rem; font-size: 1.2em; display: flex;
+    align-items: center; gap: 8px; border-bottom: 1px solid #eee; padding-bottom: 0.5rem;
+}
+.ocs-actions .button { width: 100%; margin-bottom: 10px; }
+#ocs-save-recipe-btn { background: #f6f7f7; border-color: #dcdcde; color: #50575e; }
+#ocs-save-recipe-btn:hover { background: #f0f0f1; border-color: #dcdcde; }
+#ocs-deploy-recipe-btn { background: #2271b1; border-color: #2271b1; color: #fff; }
+#ocs-deploy-recipe-btn:hover { background: #135e96; border-color: #135e96; }
+
+.ocs-import-export p, .ocs-support p { margin-top: 0; }
+.ocs-import-export-buttons, .ocs-support-buttons { display: flex; gap: 10px; margin-top: 1rem; }
+.ocs-support-buttons .dashicons, .ocs-import-export-buttons .dashicons { font-size: 16px; vertical-align: text-top; }
+.ocs-support .dashicons-editor-help{ font-size: 16px; vertical-align: middle; }
+.ocs-support-buttons .button {
+    flex: 1;
+    text-align: center;
+}
+.ocs-import-export-buttons .button {
+    flex: 1; 
+    text-align: center; 
+}
+
+/* Basic style for Checkboxes & Radios */
+.ocs-checkbox, .ocs-radio { display: flex; align-items: center; margin-bottom: 0.75rem; }
+.ocs-checkbox input, .ocs-radio input { margin-right: 8px; }
+.ocs-checkbox span, .ocs-radio span { margin-left: 0; }
+
+/* Plugin Selection Grid */
+.ocs-select-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 0 1rem; }
+.ocs-select-group h4 { margin-top: 0; margin-bottom: 0.5rem; font-size: 1em; }
+.ocs-plugin-limit {
+    font-size: 0.8em;
+    font-weight: normal;
+    color: #50575e;
+    margin-left: auto;
+    background-color: #f0f0f1;
+    padding: 2px 8px;
+    border-radius: 4px;
+}
+
+/* Theme Selection Grid */
+.ocs-theme-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(120px, 1fr)); gap: 1rem; }
+.ocs-radio-image {
+    position: relative;
+    cursor: pointer;
+    border: 1px solid #dcdcde;
+    border-radius: 4px;
+    padding: 5px;
+    transition: all 0.2s ease-in-out;
+    background-color: #f6f7f7;
+}
+
+.ocs-radio-image input {
+    position: absolute;
+    opacity: 0;
+}
+.ocs-radio-image span {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+    font-size: 0.9em;
+    min-height: auto;
+    color: #50575e;
+}
+.ocs-radio-image:hover { border-color: #949494; }
+.ocs-radio-image.ocs-radio-image-selected {
+    border-color: #2271b1;
+    background-color: #f0f6fc;
+}
+.ocs-radio-image.ocs-radio-image-selected span {
+    font-weight: bold;
+    color: #2271b1;
+}
+.ocs-no-theme {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    height: 100%;
+    min-height: auto;
+    border-radius: 2px;
+}
+
+/* Progress Modal Styles */
+#ocs-progress-modal { position: fixed; top: 0; left: 0; width: 100%; height: 100%; background: rgba(0,0,0,0.6); z-index: 99999; display: flex; align-items: center; justify-content: center; }
+#ocs-progress-container { background: #fff; border-radius: 8px; padding: 2rem; width: 90%; max-width: 600px; box-shadow: 0 5px 15px rgba(0,0,0,0.3); text-align: center; }
+.ocs-modal-title { margin-top: 1rem; }
+.ocs-modal-subtitle { margin-top: 0.5rem; color: #555; }
+#ocs-progress-bar-wrapper { width: 100%; background-color: #e0e0e0; border-radius: 4px; overflow: hidden; margin: 10px 0; }
+#ocs-progress-bar { height: 20px; background-color: #007cba; width: 0%; text-align: center; line-height: 20px; color: white; transition: width 0.4s ease; }
+#ocs-progress-text { text-align: center; font-weight: bold; margin-bottom: 1rem; }
+#ocs-live-log { background-color: #1e1e1e; color: #d4d4d4; border: 1px solid #333; padding: 10px; margin-top: 10px; max-height: 250px; overflow-y: auto; font-family: monospace; border-radius: 4px; white-space: pre-wrap; word-wrap: break-word; text-align: left; }
+#ocs-live-log .dashicons { vertical-align: middle; margin-right: 5px; font-size: 16px; }
+#ocs-live-log .dashicons-yes-alt { color: #ffffff; }
+#ocs-live-log .dashicons-dismiss { color: #f44336; }
+#ocs-live-log .dashicons-warning { color: #ff9800; }
