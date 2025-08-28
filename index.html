@@ -1,0 +1,234 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>One Click Start - The Ultimate WordPress Setup Plugin</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <style>
+        body {
+            font-family: 'Inter', sans-serif;
+            background-color: #f8fafc; /* slate-50 */
+        }
+        .section {
+            display: none;
+        }
+        .section.active {
+            display: block;
+        }
+        .nav-link.active {
+            color: #4f46e5; /* indigo-600 */
+            font-weight: 600;
+        }
+        .cta-button {
+            transition: all 0.3s ease;
+        }
+        .cta-button:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 10px 15px -3px rgb(0 0 0 / 0.1), 0 4px 6px -4px rgb(0 0 0 / 0.1);
+        }
+    </style>
+</head>
+<body class="text-slate-800">
+
+    <!-- Header & Navigation -->
+    <header class="bg-white/80 backdrop-blur-md sticky top-0 z-50 border-b border-slate-200">
+        <div class="container mx-auto px-6 py-4 flex justify-between items-center">
+            <div class="flex items-center space-x-2">
+                <svg class="w-8 h-8 text-indigo-600" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor">
+                    <path stroke-linecap="round" stroke-linejoin="round" d="M5.25 5.653c0-.856.917-1.398 1.667-.986l11.54 6.347a1.125 1.125 0 0 1 0 1.972l-11.54 6.347a1.125 1.125 0 0 1-1.667-.986V5.653Z" />
+                </svg>
+                <span class="text-xl font-bold text-slate-900">One Click Start</span>
+            </div>
+            <nav class="hidden md:flex space-x-8 text-slate-600">
+                <a href="#home" class="nav-link active">Home</a>
+                <a href="#pro" class="nav-link">Pro Features</a>
+                <a href="#donate" class="nav-link">Donate</a>
+            </nav>
+            <a href="#pro" class="hidden md:block bg-indigo-600 text-white px-4 py-2 rounded-lg font-semibold cta-button">
+                Upgrade to Pro
+            </a>
+            <button id="mobile-menu-button" class="md:hidden text-slate-800">
+                <svg class="w-6 h-6" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor">
+                    <path stroke-linecap="round" stroke-linejoin="round" d="M3.75 6.75h16.5M3.75 12h16.5m-16.5 5.25h16.5" />
+                </svg>
+            </button>
+        </div>
+        <!-- Mobile Menu -->
+        <div id="mobile-menu" class="hidden md:hidden px-6 pb-4 space-y-2">
+            <a href="#home" class="block nav-link active py-2">Home</a>
+            <a href="#pro" class="block nav-link py-2">Pro Features</a>
+            <a href="#donate" class="block nav-link py-2">Donate</a>
+        </div>
+    </header>
+
+    <main class="container mx-auto px-6 py-12 md:py-20">
+
+        <!-- Home Section -->
+        <section id="home" class="section active">
+            <div class="grid md:grid-cols-2 gap-12 items-center">
+                <div class="text-center md:text-left">
+                    <h1 class="text-4xl md:text-6xl font-bold text-slate-900 leading-tight">Set up new WordPress sites in <span class="text-indigo-600">seconds</span>, not hours.</h1>
+                    <p class="mt-6 text-lg text-slate-600">One Click Start is the ultimate toolkit for developers and agencies to automate tedious WordPress setup tasks. Build your perfect starting recipe and deploy it on any new site instantly.</p>
+                    <div class="mt-8 flex justify-center md:justify-start space-x-4">
+                        <a href="#" class="bg-indigo-600 text-white px-8 py-3 rounded-lg font-semibold text-lg cta-button">Download Free Version</a>
+                        <a href="#pro" class="bg-white text-slate-700 px-8 py-3 rounded-lg font-semibold text-lg border border-slate-300 cta-button">Explore Pro</a>
+                    </div>
+                </div>
+                <div class="hidden md:block">
+                    <!-- Placeholder for a clean, abstract graphic or screenshot -->
+                    <img src="https://placehold.co/600x400/e0e7ff/4f46e5?text=Plugin+UI" alt="Plugin Interface Illustration" class="rounded-lg shadow-xl">
+                </div>
+            </div>
+
+            <!-- Features -->
+            <div class="mt-24">
+                <h2 class="text-3xl font-bold text-center text-slate-900">Everything You Need to Get Started</h2>
+                <p class="text-center text-slate-600 mt-2">Automate the boring stuff. Focus on what matters.</p>
+                <div class="grid md:grid-cols-3 gap-8 mt-12">
+                    <!-- Feature 1 -->
+                    <div class="bg-white p-8 rounded-lg border border-slate-200">
+                        <h3 class="text-xl font-semibold text-slate-900">Automated Cleanup</h3>
+                        <p class="mt-2 text-slate-600">Instantly delete default posts, pages, and comments. Remove "Hello Dolly" with a single click.</p>
+                    </div>
+                    <!-- Feature 2 -->
+                    <div class="bg-white p-8 rounded-lg border border-slate-200">
+                        <h3 class="text-xl font-semibold text-slate-900">One-Click Settings</h3>
+                        <p class="mt-2 text-slate-600">Configure permalinks, disable comments, and set comment moderation rules from your saved recipe.</p>
+                    </div>
+                    <!-- Feature 3 -->
+                    <div class="bg-white p-8 rounded-lg border border-slate-200">
+                        <h3 class="text-xl font-semibold text-slate-900">Plugin & Theme Installer</h3>
+                        <p class="mt-2 text-slate-600">Automatically install and activate your favorite starter theme and essential plugins on every new site.</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Pro Features Section -->
+        <section id="pro" class="section">
+            <div class="text-center max-w-3xl mx-auto">
+                <h2 class="text-4xl md:text-5xl font-bold text-slate-900">Go Pro. Supercharge Your Workflow.</h2>
+                <p class="mt-4 text-lg text-slate-600">For professionals who need more power and efficiency. One Click Start Pro unlocks advanced features to save you even more time.</p>
+            </div>
+            <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-8 mt-16">
+                <!-- Pro Feature 1 -->
+                <div class="bg-white p-8 rounded-lg border-2 border-indigo-600 shadow-lg">
+                    <h3 class="text-xl font-semibold text-slate-900">Real-time Plugin & Theme Search</h3>
+                    <p class="mt-2 text-slate-600">Find and add any free plugin or theme from the WordPress.org repository directly within your recipe builder.</p>
+                </div>
+                <!-- Pro Feature 2 -->
+                <div class="bg-white p-8 rounded-lg border border-slate-200">
+                    <h3 class="text-xl font-semibold text-slate-900">Premium Asset Uploader</h3>
+                    <p class="mt-2 text-slate-600">Upload your premium plugin and theme .zip files to include them in your recipe for truly automated setups.</p>
+                </div>
+                <!-- Pro Feature 3 -->
+                <div class="bg-white p-8 rounded-lg border border-slate-200">
+                    <h3 class="text-xl font-semibold text-slate-900">Import & Export Recipes</h3>
+                    <p class="mt-2 text-slate-600">Save your recipes as JSON files. Export them for backup or import them on another site to share with your team.</p>
+                </div>
+                <!-- Pro Feature 4 -->
+                <div class="bg-white p-8 rounded-lg border border-slate-200">
+                    <h3 class="text-xl font-semibold text-slate-900">Header & Footer Scripts</h3>
+                    <p class="mt-2 text-slate-600">Automatically inject tracking codes, analytics, or other custom scripts into the header or footer.</p>
+                </div>
+                <!-- Pro Feature 5 -->
+                <div class="bg-white p-8 rounded-lg border border-slate-200">
+                    <h3 class="text-xl font-semibold text-slate-900">reCAPTCHA Integration</h3>
+                    <p class="mt-2 text-slate-600">Save your reCAPTCHA v3 keys in your recipe and have the script automatically loaded on the front-end.</p>
+                </div>
+                <!-- Pro Feature 6 -->
+                <div class="bg-white p-8 rounded-lg border border-slate-200">
+                    <h3 class="text-xl font-semibold text-slate-900">Advanced Content Protection</h3>
+                    <p class="mt-2 text-slate-600">Disable right-click, text selection, and developer tool shortcuts to protect your content from being easily copied.</p>
+                </div>
+            </div>
+            <div class="text-center mt-16">
+                <a href="#" class="bg-indigo-600 text-white px-10 py-4 rounded-lg font-semibold text-xl cta-button">Get One Click Start Pro Today</a>
+            </div>
+        </section>
+
+        <!-- Support Section -->
+<section id="donate" class="section">
+    <div class="text-center max-w-2xl mx-auto">
+        <h2 class="text-4xl md:text-5xl font-bold text-slate-900">Enjoying the Free Plugin?</h2>
+        <p class="mt-4 text-lg text-slate-600">One Click Start will always have a powerful and free version, maintained in my spare time. If the Pro version isn't the right fit for you, but you'd still like to show your appreciation and support the future of the free plugin, a small contribution is incredibly helpful. Thank you for being part of the community!</p>
+        <div class="mt-10">
+            <h3 class="text-slate-600 font-semibold">THE BEST FREE WAY TO HELP:</h3>
+            <a href="https://wordpress.org/support/plugin/one-click-start/reviews/#new-post" class="mt-2 inline-block bg-white text-slate-700 px-8 py-3 rounded-lg font-semibold text-lg border border-slate-300 cta-button">
+                ⭐ Leave a 5-Star Review
+            </a>
+        </div>
+        <div class="mt-10">
+             <h3 class="text-slate-600 font-semibold">SUPPORT FINANCIALLY:</h3>
+            <div class="mt-2 flex flex-col sm:flex-row justify-center items-center gap-4">
+                <a href="https://haasib.gumroad.com/l/donate-one-click-start" class="w-full sm:w-auto bg-rose-500 text-white px-8 py-3 rounded-lg font-semibold text-lg cta-button flex items-center justify-center space-x-2">
+                    <span>❤️</span>
+                    <span>Support on Gumroad</span>
+                </a>
+            </div>
+        </div>
+    </div>
+</section>
+    </main>
+
+    <!-- Footer -->
+    <footer class="bg-white border-t border-slate-200">
+        <div class="container mx-auto px-6 py-8 text-center text-slate-500">
+            <p>&copy; <span id="year"></span> One Click Start. Developed by haas_ib.</p>
+        </div>
+    </footer>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            const sections = document.querySelectorAll('.section');
+            const navLinks = document.querySelectorAll('.nav-link');
+            const mobileMenuButton = document.getElementById('mobile-menu-button');
+            const mobileMenu = document.getElementById('mobile-menu');
+
+            function setActiveLink(hash) {
+                navLinks.forEach(link => {
+                    link.classList.toggle('active', link.hash === hash);
+                });
+            }
+
+            function showSection(hash) {
+                sections.forEach(section => {
+                    section.classList.toggle('active', '#' + section.id === hash);
+                });
+                setActiveLink(hash);
+                window.scrollTo(0, 0);
+            }
+
+            // Handle navigation clicks
+            navLinks.forEach(link => {
+                link.addEventListener('click', function(e) {
+                    e.preventDefault();
+                    const hash = this.hash;
+                    showSection(hash);
+                    // Close mobile menu on click
+                    if (!mobileMenu.classList.contains('hidden')) {
+                        mobileMenu.classList.add('hidden');
+                    }
+                });
+            });
+
+            // Handle mobile menu toggle
+            mobileMenuButton.addEventListener('click', function() {
+                mobileMenu.classList.toggle('hidden');
+            });
+
+            // Set current year in footer
+            document.getElementById('year').textContent = new Date().getFullYear();
+
+            // Show initial section based on hash or default to #home
+            const initialHash = window.location.hash || '#home';
+            showSection(initialHash);
+        });
+    </script>
+
+</body>
+</html>
