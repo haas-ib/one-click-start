@@ -3,12 +3,12 @@
  *
  * FILE: assets/js/ocs-admin-scripts.js
  */
-(function($) {
+ (function($) {
     'use strict';
 
     let taskQueue = [];
     let totalTasks = 0;
-    const i18n = ocs_ajax_object.i18n;
+    const i18n = one_click_start_ajax_object.i18n;
 
     $(function() {
         // Handle theme selection visibility
@@ -28,9 +28,9 @@
             const $button = $('#ocs-save-recipe-btn');
 
             $.ajax({
-                url: ocs_ajax_object.ajax_url,
+                url: one_click_start_ajax_object.ajax_url,
                 type: 'POST',
-                data: { action: 'ocs_save_recipe', nonce: ocs_ajax_object.nonce, form_data: $form.serialize() },
+                data: { action: 'one_click_start_save_recipe', nonce: one_click_start_ajax_object.nonce, form_data: $form.serialize() },
                 beforeSend: function() {
                     $button.prop('disabled', true);
                     $notice.text(i18n.saving).removeClass('notice-error notice-success').addClass('notice-info').show();
@@ -47,49 +47,49 @@
             });
         });
         
-        /**
-         * Handles the "Export Recipe" button click.
-         * This dynamically creates and downloads a JSON file from the current form selections.
-         */
+        // This JS-based export handles exporting the CURRENT state of the form, which differs from the PHP which exports the SAVED state.
+        // We are leaving this as is to preserve existing functionality.
         $('#ocs-export-btn').on('click', function(e) {
-            e.preventDefault(); // Prevent the default link behavior.
-
-            const $form = $('#ocs-recipe-form');
-            let recipeData = {
-                'cleanup': [],
-                'settings': [],
-                'content': [],
-                'plugins': [],
-                'permalink': $form.find('input[name="permalink"]:checked').val() || '',
-                'theme': $form.find('input[name="theme"]:checked').val() || ''
-            };
-
-            // Manually loop through checkboxes to build clean arrays.
-            $form.find('input[name="cleanup[]"]:checked').each(function() {
-                recipeData.cleanup.push($(this).val());
-            });
-            $form.find('input[name="settings[]"]:checked').each(function() {
-                recipeData.settings.push($(this).val());
-            });
-            $form.find('input[name="content[]"]:checked').each(function() {
-                recipeData.content.push($(this).val());
-            });
-            $form.find('input[name="plugins[]"]:checked').each(function() {
-                recipeData.plugins.push($(this).val());
-            });
-
-            const jsonString = JSON.stringify(recipeData, null, 2);
-            const blob = new Blob([jsonString], { type: 'application/json' });
-            const url = URL.createObjectURL(blob);
-
-            // Create a temporary link to trigger the download.
-            const a = document.createElement('a');
-            a.href = url;
-            a.download = 'one-click-start-recipe.json';
-            document.body.appendChild(a);
-            a.click();
-            document.body.removeChild(a);
-            URL.revokeObjectURL(url);
+            // Check if the click is from the link itself and not a programmatic trigger
+            if (e.originalEvent) {
+                e.preventDefault(); 
+    
+                const $form = $('#ocs-recipe-form');
+                let recipeData = {
+                    'cleanup': [],
+                    'settings': [],
+                    'content': [],
+                    'plugins': [],
+                    'permalink': $form.find('input[name="permalink"]:checked').val() || '',
+                    'theme': $form.find('input[name="theme"]:checked').val() || ''
+                };
+    
+                // Manually loop through checkboxes to build clean arrays.
+                $form.find('input[name="cleanup[]"]:checked').each(function() {
+                    recipeData.cleanup.push($(this).val());
+                });
+                $form.find('input[name="settings[]"]:checked').each(function() {
+                    recipeData.settings.push($(this).val());
+                });
+                $form.find('input[name="content[]"]:checked').each(function() {
+                    recipeData.content.push($(this).val());
+                });
+                $form.find('input[name="plugins[]"]:checked').each(function() {
+                    recipeData.plugins.push($(this).val());
+                });
+    
+                const jsonString = JSON.stringify(recipeData, null, 2);
+                const blob = new Blob([jsonString], { type: 'application/json' });
+                const url = URL.createObjectURL(blob);
+    
+                const a = document.createElement('a');
+                a.href = url;
+                a.download = 'one-click-start-recipe.json';
+                document.body.appendChild(a);
+                a.click();
+                document.body.removeChild(a);
+                URL.revokeObjectURL(url);
+            }
         });
 
         // Handle Deploy Recipe
@@ -124,12 +124,12 @@
             }
 
             const formData = new FormData();
-            formData.append('action', 'ocs_import_recipe');
-            formData.append('nonce', ocs_ajax_object.nonce);
+            formData.append('action', 'one_click_start_import_recipe');
+            formData.append('nonce', one_click_start_ajax_object.nonce);
             formData.append('import_file', file);
 
             $.ajax({
-                url: ocs_ajax_object.ajax_url,
+                url: one_click_start_ajax_object.ajax_url,
                 type: 'POST',
                 data: formData,
                 processData: false, 
@@ -184,9 +184,9 @@
             const task = taskQueue.shift();
             
             $.ajax({
-                url: ocs_ajax_object.ajax_url,
+                url: one_click_start_ajax_object.ajax_url,
                 type: 'POST',
-                data: { action: 'ocs_execute_task', nonce: ocs_ajax_object.nonce, task_details: task },
+                data: { action: 'one_click_start_execute_task', nonce: one_click_start_ajax_object.nonce, task_details: task },
                 success: function(response) {
                     const icon = response.success ? '<span class="dashicons dashicons-yes-alt"></span>' : '<span class="dashicons dashicons-dismiss"></span>';
                     updateLog(icon + ' ' + response.data.message);

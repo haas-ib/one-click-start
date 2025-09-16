@@ -1,7 +1,7 @@
 === One Click Start ===
-Contributors: haas_ib
-Donate link: https://haasib.gumroad.com/l/donate-one-click-start
-Tags: one click start, one click setup, automate task, one click, wordpress setup, bulk install, i18n
+Contributors: haaas
+Donate link: https://haas-ib.github.io/one-click-start/#donate
+Tags: one click start, one click setup, automate task, one click, wordpress setup
 Requires at least: 5.8
 Tested up to: 6.8
 Stable tag: 1.0.0
