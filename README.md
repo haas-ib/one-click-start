@@ -1,11 +1,11 @@
-# One Click Start by haas_ib
+# One Click Start
 Time-saving tool for every new WordPress project.
 
 One Click Start automates the boring setup tasks every developer repeats — from cleanup to configuration and plugin installation — all in one go.
 
 Perfect for developers, agencies, and freelancers who build multiple websites and want a consistent, reliable starting point.
 
-#Key Highlights
+# Key Highlights
 
 Automated Setup: Delete default posts, pages, comments, and bundled plugins like Hello Dolly in seconds.
 Core Configuration: Set permalinks, disable comments, and adjust comment moderation, search engine visibility, and disable XML-RPC.
