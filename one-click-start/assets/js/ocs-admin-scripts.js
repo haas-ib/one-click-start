@@ -175,9 +175,14 @@
                 const successIcon = '<span class="dashicons dashicons-yes-alt"></span>';
                 updateLog(successIcon + ' ' + i18n.all_tasks_complete);
                 $('.ocs-modal-title').html(successIcon + ' ' + i18n.all_tasks_complete);
-                $('.ocs-modal-subtitle').html(
-                    $('<a>').attr({href: '#', id: 'ocs-close-modal'}).text(i18n.you_may_close)
-                );
+                // Set review prompt flag once per successful run
+                try {
+                    const fd = new FormData();
+                    fd.append('action','one_click_start_set_review_prompt');
+                    fd.append('nonce', one_click_start_ajax_object.nonce);
+                    fetch(one_click_start_ajax_object.ajax_url, { method: 'POST', credentials: 'same-origin', body: fd });
+                } catch (e) {}
+                $('.ocs-modal-subtitle').html($('<a>').attr({href: '#', id: 'ocs-close-modal'}).text(i18n.you_may_close));
                 return;
             }
 
