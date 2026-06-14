@@ -45,12 +45,15 @@ class One_Click_Start_Core {
         add_action( 'admin_menu', [$this, 'add_plugin_admin_menu'] );
         add_action( 'admin_enqueue_scripts', [$this, 'enqueue_styles_and_scripts'] );
         add_action( 'admin_init', [$this, 'handle_export'] );
+        add_action( 'admin_notices', [$this, 'maybe_show_review_prompt'] );
 
         if (class_exists('One_Click_Start_Ajax')) {
             $ajax_handler = new One_Click_Start_Ajax();
             add_action('wp_ajax_one_click_start_save_recipe', [$ajax_handler, 'save_recipe']);
             add_action('wp_ajax_one_click_start_execute_task', [$ajax_handler, 'execute_task']);
             add_action('wp_ajax_one_click_start_import_recipe', [$ajax_handler, 'import_recipe']);
+            add_action('wp_ajax_one_click_start_set_review_prompt', [$ajax_handler, 'set_review_prompt']);
+            add_action('wp_ajax_one_click_start_dismiss_review_prompt', [$ajax_handler, 'dismiss_review_prompt']);
         }
     }
 
@@ -124,7 +127,45 @@ class One_Click_Start_Core {
                 'import_error' => __( 'Could not import settings. The file may be invalid.', 'one-click-start' ),
                 'import_success' => __( 'Settings imported successfully! The page will now reload.', 'one-click-start' ),
                 'you_may_close' => __( 'You may now close this window.', 'one-click-start' ),
+                'review_thanks' => __( 'Thanks! If you enjoy One Click Start, please consider leaving a 5-star review.', 'one-click-start' ),
             ]
         ]);
+
+        // Mark review prompt only after a successful run by detecting the success title in the modal.
+        // This avoids showing the prompt on halted/error runs without editing the main JS file.
+        $inline_hook = "(function(){\n  try {\n    if (window.ocsReviewPromptHooked) { return; }\n    window.ocsReviewPromptHooked = true;\n    var cfg = window.one_click_start_ajax_object || {};\n    var i18n = (cfg && cfg.i18n) || {};\n    var ajaxUrl = cfg.ajax_url;\n    var nonce = cfg.nonce;\n    if (!ajaxUrl || !nonce || !i18n || !i18n.all_tasks_complete) { return; }\n    var fired = false;\n    var check = function(){\n      var titleEl = document.querySelector('.ocs-modal-title');\n      if (!titleEl) { return; }\n      var txt = (titleEl.textContent || '').trim();\n      if (!fired && txt.indexOf(i18n.all_tasks_complete) !== -1) {\n        fired = true;\n        var fd = new FormData();\n        fd.append('action','one_click_start_set_review_prompt');\n        fd.append('nonce', nonce);\n        fetch(ajaxUrl, { method: 'POST', credentials: 'same-origin', body: fd });\n      }\n    };\n    var startObserve = function(){\n      var mo = new MutationObserver(check);\n      mo.observe(document.body, { subtree: true, childList: true, characterData: true });\n      check();\n    };\n    if (document.readyState === 'loading') {\n      document.addEventListener('DOMContentLoaded', startObserve, { once: true });\n    } else {\n      startObserve();\n    }\n  } catch(e) { /* no-op */ }\n})();";
+        wp_add_inline_script($this->plugin_name, $inline_hook, 'after');
+    }
+
+    /**
+     * Show a friendly review prompt once after a successful run.
+     */
+    public function maybe_show_review_prompt(): void {
+        if ( get_option('one_click_start_show_review_prompt') ) {
+            ?>
+            <div class="notice notice-success is-dismissible ocs-review-notice">
+                <p>
+                    <strong><?php esc_html_e('🎉 You’re ready to start building!', 'one-click-start'); ?></strong>
+                    <?php esc_html_e('If One Click Start saved you time, drop a quick ⭐⭐⭐⭐⭐ — it helps us keep improving.', 'one-click-start'); ?>
+                    <a href="https://wordpress.org/support/plugin/one-click-start/reviews/#new-post" target="_blank" rel="noopener noreferrer" class="" style="margin-left:8px;">
+                        <?php esc_html_e('Leave a Review', 'one-click-start'); ?>
+                    </a>
+                </p>
+            </div>
+            <script>
+            (function(){
+                // Auto-dismiss flag when the notice is dismissed by the user
+                document.addEventListener('click', function(e){
+                    if ( e.target && e.target.closest('.notice.is-dismissible .notice-dismiss') ) {
+                        var fd = new FormData();
+                        fd.append('action','one_click_start_dismiss_review_prompt');
+                        fd.append('nonce','<?php echo esc_js( wp_create_nonce('one_click_start_ajax_nonce') ); ?>');
+                        fetch('<?php echo esc_url( admin_url('admin-ajax.php') ); ?>', { method: 'POST', credentials: 'same-origin', body: fd });
+                    }
+                }, { passive: true });
+            })();
+            </script>
+            <?php
+        }
     }
 }
