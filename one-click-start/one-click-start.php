@@ -1,11 +1,11 @@
 <?php
 /**
  * Plugin Name:       One Click Start
- * Plugin URI:        https://haas-ib.github.io/one-click-start/
+ * Plugin URI:        https://autopress.top/one-click-start/
  * Description:       A simple, reliable tool to automate your initial WordPress setup tasks.
- * Version:           1.0.0
+ * Version:           1.0.1
  * Author:            haas_ib
- * Author URI:        https://profiles.wordpress.org/haaas/
+ * Author URI:        https://haas-ib.github.io/
  * License:           GPL v2 or later
  * Text Domain:       one-click-start
  *
@@ -13,10 +13,10 @@
  */
 
 if ( ! defined( 'ABSPATH' ) ) {
-    die;
+    exit;
 }
 
-define( 'ONE_CLICK_START_VERSION', '1.0.0' );
+define( 'ONE_CLICK_START_VERSION', '1.0.1' );
 define( 'ONE_CLICK_START_PLUGIN_DIR', plugin_dir_path( __FILE__ ) );
 define( 'ONE_CLICK_START_PLUGIN_URL', plugin_dir_url( __FILE__ ) );
 
