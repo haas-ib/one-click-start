@@ -28,6 +28,6 @@ Pro Adds:
 4. Advanced Content Protection: Disable right-click, selection, and shortcuts for visitors with one click.
 5. Enhanced Task Engine: Handles large or complex recipes faster and more reliably with auto-skip feature if an error occur.
 
-👉 [Explore the Pro Version](https://autopress.top/one-click-start) — or continue enjoying the free version forever.
+👉 [Explore the Pro Version](https://autopress.top/one-click-start) — or continue enjoying the [free version](https://wordpress.org/plugins/one-click-start/) forever.
 
 (Fully optional — One Click Start Free remains powerful and maintained.)
